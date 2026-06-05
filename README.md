@@ -7,9 +7,6 @@ Kumpulan tugas Praktikum Pemrograman Web 1 Program Studi TRPL Semester 2.
 * **NIM**: 25/566497/SV/27087
 * **Prodi**: TRPL
 
-## Demo Live
-Project Portofolio: https://[URL-Hosting-Kamu].com
-
 ## Daftar Tugas
 | Pertemuan | Topik | Folder |
 |---|---|---|
