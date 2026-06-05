@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pendaftaran Open Trip</title>
+</head>
+<body>
+
+    <img src="bg.jpg" alt="Ikon Trip" style="width: 100%; height: auto; display: block;">
+    <h2 style="text-align: center;">
+        PENDAFTARAN OPEN TRIP
+    </h2>
+    <hr>
+    <br>
+
+    <form action="/proses_pendaftaran.php" method="POST" target="_blank" enctype="multipart/form-data">
+        
+        <fieldset>
+            <legend>Data Pribadi</legend>
+            
+            <label for="nama">Nama Lengkap:</label><br>
+            <input type="text" id="nama" name="nama" size="40" placeholder="Masukkan nama sesuai KTP" autofocus required><br><br>
+            
+            <label>Jenis Kelamin:</label><br>
+            <input type="radio" id="pria" name="gender" value="Pria">
+            <label for="pria">Pria</label><br>
+            <input type="radio" id="wanita" name="gender" value="Wanita">
+            <label for="wanita">Wanita</label><br><br>
+            
+            <label for="kota">Kota Asal:</label><br>
+            <input list="daftar_kota" id="kota" name="kota" placeholder="Ketik/Pilih Kota">
+            <datalist id="daftar_kota">
+                <option value="Jakarta"></option>
+                <option value="Surakarta"></option>
+                <option value="Yogyakarta"></option>
+                <option value="Surabaya"></option>
+                <option value="Bandung"></option>
+            </datalist><br><br>
+
+            <label for="hp">Nomor HP:</label><br>
+            <input type="tel" id="hp" name="hp" placeholder="081234567890"><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="emailkamu@gmail.com">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Detail Perjalanan</legend>
+            
+            <label>Pilih Destinasi:</label><br>
+            <input type="radio" id="karimunjawa" name="destinasi" value="karimunjawa">
+            <label for="karimunjawa" style="display: inline-block; text-align: left;">
+                <img src="kjw.jpeg" alt="gambarkjw" width="100" ><br>Karimun Jawa
+            </label><br>
+            <input type="radio" id="pulau1000" name="destinasi" value="pulau1000">
+            <label for="pulau1000" style="display: inline-block; text-align: left;">
+                <img src="p1000.jpeg" alt="gambarp1000" width="100"><br>Pulau Seribu
+            </label><br>
+            <input type="radio" id="bromo" name="destinasi" value="bromo">
+            <label for="bromo" style="display: inline-block; text-align: left;">
+                <img src="brm.jpeg" alt="gambarbrm" width="100"><br>Bromo
+            </label><br><br>
+            
+            <label for="tanggal">Tanggal Berangkat:</label><br>
+            <input type="date" id="tanggal" name="tanggal"><br><br>
+            
+            <label for="peserta">Jumlah Peserta:</label><br>
+            <input type="number" id="peserta" name="peserta" value="1" min="1" max="10"><br><br>
+            
+            <label>Fasilitas Tambahan:</label><br>
+            
+            <input type="checkbox" id="makan" name="fasilitas" value="Makan">
+            <label for="makan">Paket Makan (Rp 200.000)</label><br><br>
+            
+            <label for="file_ktp">Upload KTP:</label><br>
+            <input type="file" id="file_ktp" name="file_ktp"><br><br>
+            
+            <label for="catatan">Catatan Khusus:</label><br>
+            <textarea id="catatan" name="catatan" rows="4" cols="50" placeholder="Ada alergi makanan atau riwayat penyakit? 
+            Tulis di sini yaa"></textarea><br><br>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Pembayaran</legend>
+            
+            <label for="status">Tipe Peserta:</label><br>
+            <input type="text" id="status" name="status" value="Reguler" readonly><br>
+            <small>Untuk saat ini hanya tersedia reguler</small><br><br>
+            
+            <label for="promo">Kode Promo:</label><br>
+            <input type="text" id="promo" name="promo" value="KOSONG" disabled><br>
+            <small>Maaf untuk saat ini promo tidak tersedia.</small><br><br>
+            
+            <label>Estimasi Biaya:</label><br>
+            <output name="total_biaya">Rp 1.200.000</output><br><br>
+        </fieldset>
+        <br>
+
+        <input type="submit" value="Daftar Sekarang">
+        <input type="reset" value="Kosongkan Data">
+        
+    </form>
+
+</body>
+</html>
