@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tugas 2 — Pendataan Praktikan PPW1</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+
+  <div class="container mt-5" style="max-width: 600px;">
+
+    <h2 class="mb-1">📋 Pendataan Praktikan PPW1</h2>
+
+    <!-- Tombol mulai -->
+    <div id="mulai-area">
+      <p class="mb-3">
+        Klik tombol di bawah untuk memulai pendataan.
+        Sistem akan menanyakan konfirmasi, lalu meminta data diri melalui
+        dialog <code>prompt()</code>.
+      </p>
+      <button class="btn btn-primary" onclick="mulaiPendataan()">
+        Mulai Pendataan
+      </button>
+    </div>
+
+    <!-- hasil jika MAHASISWA PPW1 -->
+    <div id="hasil-area" style="display:none;">
+
+      <div class="alert alert-success mb-4">
+        ✅ Data berhasil dicatat! Selamat datang, <strong id="nama-header"></strong>.
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header"><strong>Data Praktikan</strong></div>
+        <div class="card-body p-0">
+          <table class="table table-bordered mb-0" id="tabel-data"></table>
+        </div>
+      </div>
+
+      <button class="btn btn-outline-secondary" onclick="resetForm()">
+        ↩ Input Data Ulang
+      </button>
+    </div>
+
+    <!-- Area penolakan jika BUKAN mahasiswa PPW1 -->
+    <div id="tolak-area" style="display:none;">
+      <div class="alert alert-danger">
+        <h5 class="alert-heading">🚫 Akses Ditolak!</h5>
+        <p id="tolak-pesan" class="mb-2"></p>
+        <hr>
+        <p id="tolak-tips" class="mb-0 text-muted" style="font-size:0.85rem;"></p>
+      </div>
+      <button class="btn btn-outline-secondary" onclick="resetForm()">
+        ↩ Coba Lagi
+      </button>
+    </div>
+
+  </div><!-- /container -->
+
+  <script>
+    // TUGAS 2 — Pendataan Praktikan PPW1
+    // Menggunakan: confirm(), prompt(), operator +, -, %
+
+    function mulaiPendataan() {
+
+      // confirm()
+      // Mengembalikan true (OK) atau false (Cancel)
+      var isMahasiswaPPW1 = confirm("Apakah Anda mahasiswa PPW1?");
+
+      if (isMahasiswaPPW1) {
+
+        // prompt() mengambil input dari pengguna 
+
+        var nama = prompt("Masukkan Nama Lengkap kamu:", "");
+        if (nama === null || nama.trim() === "") {
+          alert("Nama tidak boleh kosong. Silakan coba lagi.");
+          return;
+        }
+
+        var nim = prompt("Masukkan NIM kamu (angka):", "");
+        if (nim === null || nim.trim() === "") {
+          alert("NIM tidak boleh kosong. Silakan coba lagi.");
+          return;
+        }
+        if (isNaN(nim)) {
+          alert("NIM harus berupa angka! Silakan coba lagi.");
+          return;
+        }
+
+        var angkatan = prompt("Masukkan Tahun Angkatan kamu (contoh: 2023):", "");
+        if (angkatan === null || angkatan.trim() === "") {
+          alert("Angkatan tidak boleh kosong. Silakan coba lagi.");
+          return;
+        }
+        var tahunAngkatan = parseInt(angkatan);
+        if (isNaN(tahunAngkatan) || tahunAngkatan < 1990 || tahunAngkatan > new Date().getFullYear()) {
+          alert("Tahun angkatan tidak valid! Silakan coba lagi.");
+          return;
+        }
+
+        // Operator Matematika
+
+        var tahunSekarang = new Date().getFullYear();
+
+        // Operator + : hitung tahun lulus (angkatan + 4)
+        var tahunLulus = tahunAngkatan + 4;
+
+        // Operator - : hitung berapa tahun lagi lulus
+        var tahunLagi = tahunLulus - tahunSekarang;
+
+        // Operator % (modulo) : cek NIM genap/ganjil
+        var nimNumber   = parseInt(nim);
+        var sisaBagi    = nimNumber % 2;  // 0 = genap, 1 = ganjil
+        var paritasNIM  = sisaBagi === 0 ? "Genap" : "Ganjil";
+
+        var statusLulus = tahunLagi <= 0
+          ? "Sudah / Akan Lulus 🎓"
+          : tahunLagi + " tahun lagi";
+
+        // Tampilkan hasil 
+        tampilkanHasil(
+          nama.trim(), nim.trim(), tahunAngkatan,
+          tahunLulus, tahunLagi, paritasNIM, sisaBagi, statusLulus, nimNumber
+        );
+
+      } else {
+        // Bukan mahasiswa PPW1 
+        tampilkanPenolakan();
+      }
+    }
+
+    // Fungsi tampilkan hasil 
+    function tampilkanHasil(nama, nim, angkatan, tahunLulus, tahunLagi, paritas, sisaBagi, statusLulus, nimNum) {
+
+      document.getElementById("mulai-area").style.display = "none";
+      document.getElementById("tolak-area").style.display = "none";
+      document.getElementById("hasil-area").style.display = "block";
+
+      document.getElementById("nama-header").textContent = nama;
+
+      // Tabel data praktikan
+      document.getElementById("tabel-data").innerHTML =
+        "<thead class='table-light'>" +
+          "<tr><th>Field</th><th>Nilai</th></tr>" +
+        "</thead>" +
+        "<tbody>" +
+          "<tr><td>Nama Lengkap</td><td><strong>" + nama + "</strong></td></tr>" +
+          "<tr><td>NIM</td><td>" + nim + "</td></tr>" +
+          "<tr><td>Tahun Angkatan</td><td>" + angkatan + "</td></tr>" +
+          "<tr><td>Prediksi Tahun Lulus</td><td>" + tahunLulus + "</td></tr>" +
+          "<tr><td>Status Kelulusan</td><td>" + statusLulus + "</td></tr>" +
+          "<tr><td>NIM Genap / Ganjil</td><td>" +
+            "<span class='badge " + (sisaBagi === 0 ? "bg-success" : "bg-warning text-dark") + "'>" +
+            paritas + "</span>" +
+          "</td></tr>" +
+        "</tbody>";
+
+      // Log ke console
+      console.log("=== DATA PRAKTIKAN ===");
+      console.log("Nama      :", nama);
+      console.log("NIM       :", nim, "→", paritas);
+      console.log("Angkatan  :", angkatan);
+      console.log("Tahun Lulus:", tahunLulus, "|", (tahunLulus - new Date().getFullYear() <= 0 ? "sudah/akan lulus" : (tahunLulus - new Date().getFullYear()) + " tahun lagi"));
+      console.log("NIM % 2   =", sisaBagi, "→", paritas);
+    }
+
+    // Fungsi pesan penolakan 
+    function tampilkanPenolakan() {
+      document.getElementById("mulai-area").style.display = "none";
+      document.getElementById("hasil-area").style.display = "none";
+      document.getElementById("tolak-area").style.display = "block";
+
+      var pesanArr = [
+        "Kamu bukan mahasiswa PPW1? Berarti kamu orang misterius! 🕵️\nSistem ini hanya untuk praktikan PPW1 yang sah.",
+        "Wah, kamu bukan mahasiswa PPW1? 😲\nMungkin kamu nyasar?",
+        "ERROR 403: FORBIDDEN! 🚫\nHanya mahasiswa PPW1 yang boleh masuk ke sini."
+      ];
+      var tipsArr = [
+        "💡 Akses hanya untuk mahasiswa Praktikum Pemrograman Web 1.",
+        "💡 confirm() → harus jadi mahasiswa PPW1 dulu!",
+        "💡 typeof kamu !== 'mahasiswaPPW1' → sistem menolak!"
+      ];
+
+      var idx = Math.floor(Math.random() * pesanArr.length);
+      document.getElementById("tolak-pesan").innerText = pesanArr[idx];
+      document.getElementById("tolak-tips").innerText  = tipsArr[idx];
+
+      console.log("[TOLAK] User menjawab TIDAK pada confirm(). Akses ditolak.");
+    }
+
+    // Reset ke tampilan awal 
+    function resetForm() {
+      document.getElementById("mulai-area").style.display = "block";
+      document.getElementById("hasil-area").style.display = "none";
+      document.getElementById("tolak-area").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

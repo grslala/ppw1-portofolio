@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tugas 1 — Cara Penulisan JavaScript</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- ============================================================
+       CARA 1: EMBED — Script di dalam <head>
+       Output: console.log
+  ============================================================ -->
+  <script>
+    // Output 1: console.log — akan tampil di Console DevTools
+    console.log("=== [EMBED - HEAD] ===");
+    console.log("Script embed di <head> dieksekusi SEBELUM konten HTML tampil.");
+    console.log("Buka F12 > tab Console untuk melihat pesan ini.");
+  </script>
+</head>
+
+<body class="bg-light">
+
+  <div class="container mt-5" style="max-width: 700px;">
+
+    <h2 class="mb-1">📋 Tugas 1 — Cara Penulisan JavaScript</h2>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <strong>Cara 1 — Embed</strong>
+      </div>
+      <div class="card-body">
+
+        <p class="mb-1"><strong>Output — alert()</strong></p>
+        <button class="btn btn-primary btn-sm mb-3" onclick="demonstrasiAlert()">
+          Tampilkan Alert
+        </button>
+
+        <p class="mb-1"><strong>Output — innerHTML</strong></p>
+        <div id="output-embed" class="border rounded p-2 bg-white text-muted" style="min-height:38px;">
+          (belum ada output — klik tombol di atas)
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <strong>Cara 2 — Inline</strong>
+      </div>
+      <div class="card-body">
+  
+        <p class="mb-1"><strong>Output — confirm() (inline onclick)</strong></p>
+        <button class="btn btn-warning btn-sm mb-2"
+          onclick="
+            var setuju = confirm('Apakah kamu suka JavaScript?');
+            var el = document.getElementById('output-inline');
+            if (setuju) {
+              el.innerHTML = '✅ Kamu menjawab: <strong>YA</strong>';
+              el.className = 'border rounded p-2 bg-white text-success';
+            } else {
+              el.innerHTML = '❌ Kamu menjawab: <strong>TIDAK</strong>';
+              el.className = 'border rounded p-2 bg-white text-danger';
+            }
+          ">
+          Confirm (Inline onclick)
+        </button>
+
+        <a href="javascript:alert('Ini dipanggil dari href javascript:!')"
+           class="btn btn-outline-secondary btn-sm mb-2 ms-1">
+          Alert via href
+        </a>
+
+        <p class="mb-1"><strong>Output — innerHTML</strong></p>
+        <div id="output-inline" class="border rounded p-2 bg-white text-muted" style="min-height:38px;">
+          (belum ada output — klik tombol di atas)
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <strong>Cara 3 — Eksternal</strong>
+      </div>
+      <div class="card-body">
+
+        <p class="mb-1"><strong>Output — document.write()</strong></p>
+        <button class="btn btn-success btn-sm mb-2" onclick="demoDocWrite()">
+          Demo document.write()
+        </button>
+
+        <p class="mb-1"><strong>Output — innerHTML (dari script eksternal)</strong></p>
+        <div id="output-eksternal" class="border rounded p-2 bg-white text-muted" style="min-height:38px;">
+          (menunggu script eksternal dimuat...)
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /container -->
+
+
+  <!--  CARA 1: EMBED — Script di akhir <body>-->
+  <script>
+    // console.log dari embed di body
+    console.log("=== [EMBED - BODY] ===");
+    console.log("Script embed di <body> dieksekusi setelah elemen di atasnya dimuat.");
+
+    // Fungsi untuk tombol alert (dipanggil dari embed)
+    function demonstrasiAlert() {
+      // Output 2: alert()
+      alert("Ini adalah output menggunakan alert().\nScript ditulis di dalam tag <script> di dalam HTML.");
+
+      // Output 4: innerHTML
+      var el = document.getElementById("output-embed");
+      el.innerHTML = "✅ <strong>innerHTML</strong> diperbarui oleh script <em>embed</em>. " +
+        "Waktu: " + new Date().toLocaleTimeString("id-ID");
+      el.className = "border rounded p-2 bg-white text-dark";
+
+      // Output 1: console.log
+      console.log("[EMBED] Tombol alert diklik pada:", new Date().toLocaleString("id-ID"));
+    }
+
+    // Fungsi demo document.write — buka tab baru agar tidak menghapus halaman
+    function demoDocWrite() {
+      console.log("[EMBED] Membuka demo document.write() di tab baru...");
+      var win = window.open("", "_blank", "width=480,height=260");
+      if (win) {
+        // Output 3: document.write()
+        win.document.write("<!DOCTYPE html><html><body style='font-family:sans-serif;padding:24px;'>");
+        win.document.write("<h3>Output document.write()</h3><hr>");
+        win.document.write("<p>✅ Ini ditulis menggunakan <strong>document.write()</strong>.</p>");
+        win.document.write("<p>Metode ini menulis langsung ke dokumen HTML.</p>");
+        win.document.write("<p><em>Hindari memanggilnya setelah halaman selesai dimuat!</em></p>");
+        win.document.write("</body></html>");
+      } else {
+        alert("Popup diblokir browser!\nIzinkan popup untuk melihat demo document.write().");
+      }
+    }
+
+    // Panggil fungsi dari script eksternal setelah DOM siap
+    window.addEventListener("DOMContentLoaded", function () {
+      jalankanScriptEksternal();
+    });
+  </script>
+
+  <!-- CARA 3: EKSTERNAL — file .js terpisah disisipkan via src -->
+  <script src="kode-eksternal.js"></script>
+
+</body>
+</html>
