@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bake Addict</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FFFCF3;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background-color: #FFFCF3;
+      color: white;
+      padding: 10px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      width: 100%;
+      border-bottom: 2px solid #4C3837;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 15px;
+    }
+
+    nav a:link    { color: #4C3837; }
+    nav a:visited { color: #c0d8f0; }
+    nav a:hover   { color: #ed5582; text-decoration: underline; }
+    nav a:active  { color: #d8295e; }
+
+    /* Hero */
+    body > :not(header):first-of-type,
+    .hero {
+      margin-top: 68px;
+    }
+    
+    .hero {
+      background-color: #feeaae;
+      text-align: center;
+      padding: 80px 20px;
+      border-bottom: 2px solid #4C3837;
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #4C3837;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #4C3837;
+      margin-bottom: 30px;
+    }
+
+    .hero a {
+      background-color: #4C3837;
+      color: white;
+      padding: 10px 24px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 15px;
+    }
+
+    .hero a:hover {
+      background-color: #6c5350;
+    }
+
+    /* Main Content */
+    main {
+      padding: 0 30px 0px 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Section */
+    section {
+      margin-bottom: 50px;
+    }
+
+    section h2 {
+      font-size: 22px;
+      color: #4C3837;
+      border-bottom: 2px solid #4C3837;
+      padding-bottom: 6px;
+      margin-bottom: 20px;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    article {
+      background-color: #ffd1d1;
+      border: 2px solid #4C3837;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    article img {
+        border: 2px solid #4C3837;
+        border-radius: 10px;
+        width: 100%;               /* Gambar memenuhi lebar kotak */
+        height: 150px;             /* Atur tinggi gambar (silakan ubah angka ini) */
+        object-fit: cover;         /* Biar gambar tidak penyet/gepeng */
+        display: block;
+    }
+
+    article h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: #222;
+      text-align: center;
+    }
+
+    /* About */
+    .about-box {
+      background-color: #FFFCF3;
+      border: 2px solid #4C3837;
+      text-align: justify;
+      border-radius: 15px;
+      padding: 24px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* Contact */
+    address {
+      font-style: normal;
+      background-color: #FFFCF3;
+      border: 2px solid #4C3837;
+      border-radius: 15px;
+      padding: 24px;
+      line-height: 2;
+      color: #444;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 2px solid #4C3837;
+      background-color: #feeaae;
+      color: #4C3837;
+      text-align: center;
+      padding: 16px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="IMG/LogoType.png" width="60" height="50" >
+    <h1></h1>
+    <nav>
+      <a href="#tentang">Tentang</a>
+      <a href="#menu">Menu</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Selamat Datang di Bake Addict 🍰</h2>
+    <p>Temukan dessert favoritmu disini.</p>
+    <a href="#menu">Lihat Menu</a>
+  </div>
+
+  <main>
+
+    <section id="tentang">
+      <h2>Tentang Kami</h2>
+      <div class="about-box">
+        <p>Bake Addict berdiri sejak tahun 2020 dan telah melayani ratusan pelanggan setia. Kami menyediakan berbagai hidangan penutup dengan bahan berkualitas.</p>
+        <p>Misi kami adalah membahagiakan pelanggan dengan berbagai dessert yang membuat ketagihan.</p>
+      </div>
+    </section>
+
+    <section id="menu">
+      <h2>Menu</h2>
+      <div class="card-grid">
+
+        <article>
+          <h3>Soft Cookies</h3>
+          <img src="IMG/cookie.jpg">
+        </article>
+
+        <article>
+          <h3>Cake</h3>
+          <img src="IMG/kue.jpg">
+        </article>
+
+        <article>
+          <h3>Pastry</h3>
+          <img src="IMG/pastry.jpg" >
+        </article>
+
+      </div>
+    </section>
+
+    <section id="kontak">
+      <h2>Kontak</h2>
+      <address>
+        <strong>Bake Addict</strong><br>
+        Jl. Gatot Subroto, Kota Surakarta, Jawa Tengah<br>
+        Telepon: 0812-3456-7890 <br>
+        Email: bakeAddict@mail.com <br>
+        Jam Buka: Senin – Minggu, 09.00 – 24.00 WIB
+      </address>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Bake Addict. Semua hak dilindungi.</p>
+  </footer>
+
+</body>
+</html>

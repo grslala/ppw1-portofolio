@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uji Coba White Space</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+        
+        .kotak {
+            width: 300px;
+            border: 1px solid #000000;
+            background-color: #f9f9f900;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 5 Nilai White Space */
+        .normal { white-space: normal; }
+        .nowrap { white-space: nowrap; }
+        .pre { white-space: pre; }
+        .pre-wrap { white-space: pre-wrap; }
+        .pre-line { white-space: pre-line; }
+    </style>
+</head>
+<body>
+    <h3>1. normal</h3>
+    <div class="kotak normal">
+Teks ini     punya     banyak     spasi.
+Lalu ini di-enter dari kodenya. Tapi dia akan mengabaikannya dan otomatis turun kalau mentok batas kotak.
+    </div>
+
+    <h3>2. nowrap</h3>
+    <div class="kotak nowrap">
+Teks ini     punya     banyak     spasi.
+Lalu ini di-enter dari kodenya. Dia akan bablas menembus batas kotak ke kanan karena tidak boleh wrap.
+    </div>
+
+    <h3>3. pre</h3>
+    <div class="kotak pre">
+Teks ini     punya     banyak     spasi.
+Lalu ini di-enter dari kodenya. Dia mempertahankan spasi asli, tapi teks panjangnya tetap bablas menembus kotak.
+    </div>
+
+    <h3>4. pre-wrap</h3>
+    <div class="kotak pre-wrap">
+Teks ini     punya     banyak     spasi.
+Lalu ini di-enter dari kodenya. Dia mempertahankan spasi asli, dan cerdas turun ke bawah saat mentok kotak.
+    </div>
+
+    <h3>5. pre-line</h3>
+    <div class="kotak pre-line">
+Teks ini     punya     banyak     spasi.
+Lalu ini di-enter dari kodenya. Spasi gandanya dihapus jadi satu, TAPI enternya dipertahankan dan dia turun saat mentok kotak.
+    </div>
+
+</body>
+</html>
